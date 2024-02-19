@@ -1,3 +1,4 @@
+import Button from "@/components/button/button";
 import Form from "@/components/form/Form";
 import Navbar from "@/components/navbar/Navbar";
 
@@ -12,7 +13,7 @@ export default function Home() {
             Organizar as suas finanças nunca foi tão fácil, com o DINDIN, você
             tem tudo num único lugar e em um clique de distância.
           </p>
-          <button className="max-w-72">Cadastre-se</button>
+          <Button text="Cadastre-se"/>
         </div>
         <Form />
       </div>
