@@ -3,7 +3,7 @@ import Button from "@/components/button/button";
 import ContainerForm from "@/components/containerForm";
 import Input from "@/components/input/input";
 import Navbar from "@/components/navbar/Navbar";
-import { getItemStorage, setItemStorage } from "../../utils/localStorage";
+// import { getItemStorage, setItemStorage } from "../../utils/localStorage";
 import Link from "next/link";
 
 import { useState } from "react";
@@ -34,8 +34,31 @@ export default function SignUp() {
     // })
 
     //Apenas para testes:
-    setItemStorage("email", form.email);
-    console.log(getItemStorage("email"));
+    // setItemStorage("email", form.email);
+    // console.log(getItemStorage("email"));
+
+    if (!form.email.includes("@") || !form.email.includes(".com")) {
+      setErro({ ...erro, emailErro: "O e-mail informado é inválido." });
+      return alert(erro.emailErro);
+    }
+
+    if (form.password.length < 5) {
+      setErro({
+        ...erro,
+        passwordErro: "A senha deve ter no mínimo 5 dígitos.",
+      });
+
+      return alert(erro.passwordErro);
+    }
+    if (form.password !== form.passwordConfirm) {
+      setErro({
+        ...erro,
+        passwordErro: "As senhas não coincidem",
+      });
+
+      return alert(erro.passwordErro);
+    }
+    setErro({ nameErro: "", emailErro: "", passwordErro: "" });
   };
 
   const handleChange = (event: any) => {
