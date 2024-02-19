@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Link from "next/link";
 
 export default function SignUp() {
+  const handleSubmit = () => {};
   return (
     <main className="min-h-screen  py-10 px-20   bg-[url('../assets/background.svg')] bg-clip-padding bg-no-repeat  bg-cover bg-center">
       <Navbar />
