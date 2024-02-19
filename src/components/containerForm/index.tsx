@@ -1,11 +1,15 @@
 import React from "react";
 
-type ContainerForm = {
+interface ContainerForm extends React.FormHTMLAttributes<HTMLFormElement> {
   title: string;
   children: React.ReactElement[];
-};
+}
 
-export default function ContainerForm({ title, children }: ContainerForm) {
+export default function ContainerForm({
+  title,
+  children,
+  ...rest
+}: ContainerForm) {
   return (
     <div className="flex flex-1 flex-col justify-center  lg:px-8 bg-white w-[513px]">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -15,7 +19,7 @@ export default function ContainerForm({ title, children }: ContainerForm) {
       </div>
 
       <div className="my-10 sm:mx-auto sm:w-full sm:max-w-sm ">
-        <form className="space-y-6" action="#" method="POST">
+        <form className="space-y-6" action="#" method="POST" {...rest}>
           {children}
         </form>
       </div>

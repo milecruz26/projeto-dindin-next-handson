@@ -47,7 +47,7 @@ export default function SignUp() {
     <main className="min-h-screen  py-10 px-20   bg-[url('../assets/background.svg')] bg-clip-padding bg-no-repeat  bg-cover bg-center">
       <Navbar />
       <div className="flex flex-col items-center">
-        <ContainerForm title="Login">
+        <ContainerForm title="Login" onSubmit={handleSubmit}>
           <Input
             id="name"
             name="name"
