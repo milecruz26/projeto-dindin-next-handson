@@ -1,9 +1,16 @@
+'use client'
 import Button from "@/components/button/button";
 import ContainerForm from "@/components/containerForm";
 import Input from "@/components/input/input";
 import Navbar from "@/components/navbar/Navbar";
+import { useRouter } from "next/navigation";
+
 
 export default function Home() {
+  const router = useRouter()
+  function handleRedirectSignUp() {  
+    router.push('/signup')
+  }
   return (
     <main className="min-h-screen  py-10 px-20   bg-[url('../assets/background.svg')] bg-clip-padding bg-no-repeat  bg-cover bg-center">
       <Navbar />
@@ -18,7 +25,7 @@ export default function Home() {
             tem tudo num único lugar e em um clique de distância.
           </p>
           <div className="max-w-60">
-          <Button text="Cadastre-se" />
+          <Button text="Cadastre-se"  onClick={handleRedirectSignUp}/>
           </div>
           
         </div>
