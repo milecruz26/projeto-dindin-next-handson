@@ -1,7 +1,8 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { redirect } from "next/navigation";
 
-const nextAuthOptions: NextAuthConfig = {
+export const nextAuthOptions: NextAuthConfig = {
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -11,8 +12,6 @@ const nextAuthOptions: NextAuthConfig = {
       },
 
       async authorize(credentials, req) {
-        console.log(credentials);
-
         const response = await fetch("https://pancoda.onrender.com/login", {
           method: "POST",
           headers: {
