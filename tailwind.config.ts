@@ -17,6 +17,12 @@ const config: Config = {
         transparent: "transparent",
         current: "currentColor",
         purple: "#7978D9",
+        cyan: {
+          550: "#05EDE3",
+        },
+        blue: {
+          550: "#645FFB",
+        },
       },
     },
   },
