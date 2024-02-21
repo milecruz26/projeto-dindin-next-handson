@@ -1,8 +1,8 @@
 // import Navbar from "@/components/navbar/Navbar";
 import Image from "next/image";
-import tabela from "../../assets/tabela.svg";
-import profile from "../../assets/profile.svg";
-import logout from "../../assets/logout.svg";
+import tabela from "../../../assets/tabela.svg";
+import profile from "../../../assets/profile.svg";
+import logout from "../../../assets/logout.svg";
 
 export default function Dashboard() {
   return (
