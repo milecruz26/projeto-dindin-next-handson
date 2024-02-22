@@ -3,6 +3,7 @@ import Button from "@/components/button/button";
 import ContainerForm from "@/components/containerForm";
 import Input from "@/components/input/input";
 import Navbar from "@/components/navbar/Navbar";
+import {toastify } from "@/lib/Toast";
 // import { getItemStorage, setItemStorage } from "../../utils/localStorage";
 import Link from "next/link";
 
@@ -17,16 +18,16 @@ export default function SignUp() {
     passwordConfirm: "",
   });
 
-  const [erro, setErro] = useState({
+/*   const [erro, setErro] = useState({
     nameErro: "",
     emailErro: "",
     passwordErro: "",
-  });
+  }); */
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
     event.stopPropagation();
-
+  
     // const signup = await api.post("/user/signup", {
     // user_name: form.name,
     // email: form.email,
@@ -38,27 +39,28 @@ export default function SignUp() {
     // console.log(getItemStorage("email"));
 
     if (!form.email.includes("@") || !form.email.includes(".com")) {
-      setErro({ ...erro, emailErro: "O e-mail informado é inválido." });
-      return alert(erro.emailErro);
+      /* setErro({ ...erro, emailErro: "O e-mail informado é inválido." }); */
+      return toastify.error("O e-mail informado é inválido.");
     }
 
     if (form.password.length < 5) {
-      setErro({
+      /* setErro({
         ...erro,
         passwordErro: "A senha deve ter no mínimo 5 dígitos.",
-      });
+      }); */
 
-      return alert(erro.passwordErro);
+      return toastify.error("A senha deve ter no mínimo 5 dígitos.",) 
+     
     }
     if (form.password !== form.passwordConfirm) {
-      setErro({
+     /*  setErro({
         ...erro,
         passwordErro: "As senhas não coincidem",
-      });
+      }); */
 
-      return alert(erro.passwordErro);
+      return toastify.error("As senhas não coincidem") 
     }
-    setErro({ nameErro: "", emailErro: "", passwordErro: "" });
+    /* setErro({ nameErro: "", emailErro: "", passwordErro: "" }); */
   };
 
   const handleChange = (event: any) => {
@@ -67,7 +69,7 @@ export default function SignUp() {
   };
 
   return (
-    <main className="min-h-screen  py-10 px-20   bg-[url('../assets/background.svg')] bg-clip-padding bg-no-repeat  bg-cover bg-center">
+    <main className="p-10 bg-[url('../assets/background.svg')] bg-clip-padding bg-no-repeat  bg-cover bg-center">
       <Navbar />
       <div className="flex flex-col items-center">
         <ContainerForm title="Login" onSubmit={handleSubmit}>
