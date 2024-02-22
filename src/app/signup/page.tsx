@@ -18,16 +18,16 @@ export default function SignUp() {
     passwordConfirm: "",
   });
 
-  const [erro, setErro] = useState({
+/*   const [erro, setErro] = useState({
     nameErro: "",
     emailErro: "",
     passwordErro: "",
-  });
+  }); */
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
     event.stopPropagation();
-
+  
     // const signup = await api.post("/user/signup", {
     // user_name: form.name,
     // email: form.email,
@@ -39,28 +39,28 @@ export default function SignUp() {
     // console.log(getItemStorage("email"));
 
     if (!form.email.includes("@") || !form.email.includes(".com")) {
-      setErro({ ...erro, emailErro: "O e-mail informado é inválido." });
-      return toastify.error(erro.emailErro);
+      /* setErro({ ...erro, emailErro: "O e-mail informado é inválido." }); */
+      return toastify.error("O e-mail informado é inválido.");
     }
 
     if (form.password.length < 5) {
-      setErro({
+      /* setErro({
         ...erro,
         passwordErro: "A senha deve ter no mínimo 5 dígitos.",
-      });
+      }); */
 
-      return toastify.error(erro.passwordErro) 
+      return toastify.error("A senha deve ter no mínimo 5 dígitos.",) 
      
     }
     if (form.password !== form.passwordConfirm) {
-      setErro({
+     /*  setErro({
         ...erro,
         passwordErro: "As senhas não coincidem",
-      });
+      }); */
 
-      return toastify.error(erro.passwordErro) 
+      return toastify.error("As senhas não coincidem") 
     }
-    setErro({ nameErro: "", emailErro: "", passwordErro: "" });
+    /* setErro({ nameErro: "", emailErro: "", passwordErro: "" }); */
   };
 
   const handleChange = (event: any) => {
