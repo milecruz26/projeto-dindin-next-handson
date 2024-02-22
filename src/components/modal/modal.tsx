@@ -4,7 +4,8 @@ import Image from "next/image";
 import Input from "../input/input";
 import iconClose from "../../assets/close-icon.svg";
 import Button from "../button/button";
-import { getItemStorage, setItemStorage } from "../../utils/localStorage";
+import { toastify } from "@/lib/Toast";
+// import { getItemStorage, setItemStorage } from "../../utils/localStorage";
 
 export default function Modal({
   click,
@@ -18,12 +19,6 @@ export default function Modal({
     email: "",
     password: "",
     passwordConfirm: "",
-  });
-
-  const [erro, setErro] = useState({
-    nameErro: "",
-    emailErro: "",
-    passwordErro: "",
   });
 
   // const loadUser = async () => {
@@ -61,27 +56,15 @@ export default function Modal({
     // console.log(getItemStorage("email"));
 
     if (!form.email.includes("@") || !form.email.includes(".com")) {
-      setErro({ ...erro, emailErro: "O e-mail informado é inválido." });
-      return alert(erro.emailErro);
+      return toastify.error("O e-mail informado é inválido.");
     }
 
     if (form.password.length < 5) {
-      setErro({
-        ...erro,
-        passwordErro: "A senha deve ter no mínimo 5 dígitos.",
-      });
-
-      return alert(erro.passwordErro);
+      return toastify.error("A senha deve ter no mínimo 5 dígitos.");
     }
     if (form.password !== form.passwordConfirm) {
-      setErro({
-        ...erro,
-        passwordErro: "As senhas não coincidem",
-      });
-
-      return alert(erro.passwordErro);
+      return toastify.error("As senhas não coincidem");
     }
-    setErro({ nameErro: "", emailErro: "", passwordErro: "" });
   };
 
   const handleChange = (event: any) => {
