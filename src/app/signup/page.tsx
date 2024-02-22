@@ -3,6 +3,7 @@ import Button from "@/components/button/button";
 import ContainerForm from "@/components/containerForm";
 import Input from "@/components/input/input";
 import Navbar from "@/components/navbar/Navbar";
+import {toastify } from "@/lib/Toast";
 // import { getItemStorage, setItemStorage } from "../../utils/localStorage";
 import Link from "next/link";
 
@@ -39,7 +40,7 @@ export default function SignUp() {
 
     if (!form.email.includes("@") || !form.email.includes(".com")) {
       setErro({ ...erro, emailErro: "O e-mail informado é inválido." });
-      return alert(erro.emailErro);
+      return toastify.error(erro.emailErro);
     }
 
     if (form.password.length < 5) {
@@ -48,7 +49,8 @@ export default function SignUp() {
         passwordErro: "A senha deve ter no mínimo 5 dígitos.",
       });
 
-      return alert(erro.passwordErro);
+      return toastify.error(erro.passwordErro) 
+     
     }
     if (form.password !== form.passwordConfirm) {
       setErro({
@@ -56,7 +58,7 @@ export default function SignUp() {
         passwordErro: "As senhas não coincidem",
       });
 
-      return alert(erro.passwordErro);
+      return toastify.error(erro.passwordErro) 
     }
     setErro({ nameErro: "", emailErro: "", passwordErro: "" });
   };
