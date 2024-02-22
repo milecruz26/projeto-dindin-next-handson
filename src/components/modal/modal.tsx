@@ -5,9 +5,7 @@ import Input from "../input/input";
 import iconClose from "../../assets/close-icon.svg";
 import Button from "../button/button";
 
-export default function Modal({
-  click,
-}: React.Dispatch<React.SetStateAction<boolean>>) {
+export default function Modal({ click }: { click: boolean }) {
   // const handleSubmit = () => {};
   // const [click, setClick] = useState(true);
   return (

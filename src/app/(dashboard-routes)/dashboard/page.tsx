@@ -7,7 +7,7 @@ import Modal from "@/components/modal/modal";
 import React, { useState } from "react";
 
 export default function Dashboard() {
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(true);
 
   return (
     <main className="max-h-screen bg-gradient-to-r from-cyan-550 to-blue-550">
