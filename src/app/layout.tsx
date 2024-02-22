@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
-
+/* import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; */
 
 // const inter = Inter({ subsets: ["latin"] });
 const rubik = Rubik({ subsets: ["latin"] });
@@ -19,8 +20,20 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={rubik.className}>
-          {children}
-        </body>
+{/*         <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        /><ToastContainer /> */}
+        {children}
+      </body>
     </html>
   );
 }
