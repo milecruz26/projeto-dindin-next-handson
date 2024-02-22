@@ -7,7 +7,7 @@ import Modal from "@/components/modal/modal";
 import React, { useState } from "react";
 
 export default function Dashboard() {
-  const [click, setClick] = useState(true);
+  const [click, setClick] = useState(false);
 
   return (
     <main className="max-h-screen bg-gradient-to-r from-cyan-550 to-blue-550">
@@ -36,7 +36,7 @@ export default function Dashboard() {
       <section className="flex items-center justify-center bg-white h-full min-h-80 py-10 px-20">
         <Image src={tabela} alt="tabela" width={1000} />
       </section>
-      <Modal click={click} />
+      <Modal click={click} setClick={setClick} />
     </main>
   );
 }

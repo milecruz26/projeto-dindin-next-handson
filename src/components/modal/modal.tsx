@@ -5,9 +5,16 @@ import Input from "../input/input";
 import iconClose from "../../assets/close-icon.svg";
 import Button from "../button/button";
 
-export default function Modal({ click }: { click: boolean }) {
+export default function Modal({
+  click,
+  setClick,
+}: {
+  click: boolean;
+  setClick: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   // const handleSubmit = () => {};
   // const [click, setClick] = useState(true);
+
   return (
     <>
       {click && (
@@ -22,6 +29,7 @@ export default function Modal({ click }: { click: boolean }) {
                 alt="ícone de fechar"
                 height={15}
                 className="cursor-pointer"
+                onClick={() => setClick(false)}
               />
             </div>
 
