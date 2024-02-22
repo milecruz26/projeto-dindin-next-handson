@@ -3,6 +3,7 @@ import Button from "@/components/button/button";
 import ContainerForm from "@/components/containerForm";
 import Input from "@/components/input/input";
 import Navbar from "@/components/navbar/Navbar";
+import { toastify } from "@/lib/Toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FormEvent, SyntheticEvent, useState } from "react";
@@ -28,16 +29,16 @@ export default  function Home() {
     })
     
     if (result?.error) {
-      console.log(result.error);
+      toastify.error(result.error);
       return
     }
     router.replace('/dashboard')
   }
 
   return (
-    <main className="min-h-screen  py-10 px-20   bg-[url('../assets/background.svg')] bg-clip-padding bg-no-repeat  bg-cover bg-center">
+    <main className="min-h-screen p-20 bg-[url('../assets/background.svg')] bg-clip-padding bg-no-repeat  bg-cover bg-center flex gap-4 flex-col">
       <Navbar />
-      <div className="grid grid-cols-2 items-center justify-center">
+      <div className="grid grid-cols-2 items-center justify-center place-items-center flex-1">
         <div className="flex col-1 flex-col gap-7">
           <h1 className="font-bold text-5xl text-white">
             Controle suas <span className="text-purple">finanças</span>,<br />{" "}
