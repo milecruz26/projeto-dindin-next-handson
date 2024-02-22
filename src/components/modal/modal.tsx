@@ -4,6 +4,7 @@ import Image from "next/image";
 import Input from "../input/input";
 import iconClose from "../../assets/close-icon.svg";
 import Button from "../button/button";
+import { getItemStorage, setItemStorage } from "../../utils/localStorage";
 
 export default function Modal({
   click,
@@ -12,8 +13,81 @@ export default function Modal({
   click: boolean;
   setClick: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  // const handleSubmit = () => {};
-  // const [click, setClick] = useState(true);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  });
+
+  const [erro, setErro] = useState({
+    nameErro: "",
+    emailErro: "",
+    passwordErro: "",
+  });
+
+  // const loadUser = async () => {
+  //   const { data } = await api.get(`/user/${id}`, {
+  //     headers: {
+  //       authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   setForm({
+  //     name: data[0].user_name,
+  //     email: data[0].email,
+  //     password: data[0].password,
+  //
+  //   });
+  // };
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    // await api.put(
+    //   `/user/toEdit/${id}`,
+    //   {
+    //     ...form,
+    //   },
+    //   {
+    //     headers: {
+    //       authorization: `Bearer ${token}`,
+    //     },
+    //   }
+    // );
+
+    //Apenas para testes:
+    // setItemStorage("email", form.email);
+    // console.log(getItemStorage("email"));
+
+    if (!form.email.includes("@") || !form.email.includes(".com")) {
+      setErro({ ...erro, emailErro: "O e-mail informado é inválido." });
+      return alert(erro.emailErro);
+    }
+
+    if (form.password.length < 5) {
+      setErro({
+        ...erro,
+        passwordErro: "A senha deve ter no mínimo 5 dígitos.",
+      });
+
+      return alert(erro.passwordErro);
+    }
+    if (form.password !== form.passwordConfirm) {
+      setErro({
+        ...erro,
+        passwordErro: "As senhas não coincidem",
+      });
+
+      return alert(erro.passwordErro);
+    }
+    setErro({ nameErro: "", emailErro: "", passwordErro: "" });
+  };
+
+  const handleChange = (event: any) => {
+    const value = event.target.value;
+    setForm({ ...form, [event.target.id]: value });
+  };
 
   return (
     <>
@@ -34,13 +108,18 @@ export default function Modal({
             </div>
 
             <div>
-              <form className="space-y-6 flex flex-col justify-evenly  h-[500px]">
+              <form
+                className="space-y-6 flex flex-col justify-evenly  h-[500px]"
+                onSubmit={handleSubmit}
+              >
                 <Input
                   id="nome"
                   name="nome"
                   type="text"
                   autoComplete="nome"
                   label="Nome"
+                  value={form.name}
+                  onChange={(event) => handleChange(event)}
                 />
                 <Input
                   id="email"
@@ -48,6 +127,8 @@ export default function Modal({
                   type="text"
                   autoComplete="email"
                   label="E-mail"
+                  value={form.email}
+                  onChange={(event) => handleChange(event)}
                 />
                 <Input
                   id="password"
@@ -55,6 +136,8 @@ export default function Modal({
                   type="password"
                   autoComplete="password"
                   label="Senha"
+                  value={form.password}
+                  onChange={(event) => handleChange(event)}
                 />
                 <Input
                   id="passwordConfirm"
@@ -62,6 +145,8 @@ export default function Modal({
                   type="password"
                   autoComplete="passwordConfirm"
                   label="Confirmar senha"
+                  value={form.passwordConfirm}
+                  onChange={(event) => handleChange(event)}
                 />
 
                 <div>
