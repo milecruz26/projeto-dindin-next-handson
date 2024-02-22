@@ -3,6 +3,7 @@ import Button from "@/components/button/button";
 import ContainerForm from "@/components/containerForm";
 import Input from "@/components/input/input";
 import Navbar from "@/components/navbar/Navbar";
+import { toastify } from "@/lib/Toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FormEvent, SyntheticEvent, useState } from "react";
@@ -28,7 +29,7 @@ export default  function Home() {
     })
     
     if (result?.error) {
-      console.log(result.error);
+      toastify.error(result.error);
       return
     }
     router.replace('/dashboard')
