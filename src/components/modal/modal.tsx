@@ -5,7 +5,7 @@ import Input from "../input/input";
 import iconClose from "../../assets/close-icon.svg";
 import Button from "../button/button";
 import { toastify } from "@/lib/Toast";
-// import { getItemStorage, setItemStorage } from "../../utils/localStorage";
+import { getItemStorage, setItemStorage } from "../../utils/localStorage";
 
 export default function Modal({
   click,
@@ -52,8 +52,14 @@ export default function Modal({
     // );
 
     //Apenas para testes:
+    // setItemStorage("nome", form.name);
     // setItemStorage("email", form.email);
+    // setItemStorage("password", form.password);
+    // setItemStorage("passwordConfirm", form.passwordConfirm);
+    // console.log(getItemStorage("nome"));
     // console.log(getItemStorage("email"));
+    // console.log(getItemStorage("password"));
+    // console.log(getItemStorage("passwordConfirm"));
 
     if (!form.email.includes("@") || !form.email.includes(".com")) {
       return toastify.error("O e-mail informado é inválido.");
@@ -96,10 +102,10 @@ export default function Modal({
                 onSubmit={handleSubmit}
               >
                 <Input
-                  id="nome"
-                  name="nome"
+                  id="name"
+                  name="name"
                   type="text"
-                  autoComplete="nome"
+                  autoComplete="name"
                   label="Nome"
                   value={form.name}
                   onChange={(event) => handleChange(event)}
