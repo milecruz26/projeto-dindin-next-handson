@@ -35,9 +35,9 @@ export default  function Home() {
   }
 
   return (
-    <main className="min-h-screen  py-10 px-20   bg-[url('../assets/background.svg')] bg-clip-padding bg-no-repeat  bg-cover bg-center">
+    <main className="min-h-screen p-20 bg-[url('../assets/background.svg')] bg-clip-padding bg-no-repeat  bg-cover bg-center flex gap-4 flex-col">
       <Navbar />
-      <div className="grid grid-cols-2 items-center justify-center">
+      <div className="grid grid-cols-2 items-center justify-center place-items-center flex-1">
         <div className="flex col-1 flex-col gap-7">
           <h1 className="font-bold text-5xl text-white">
             Controle suas <span className="text-purple">finanças</span>,<br />{" "}
