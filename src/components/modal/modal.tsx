@@ -4,6 +4,8 @@ import Image from "next/image";
 import Input from "../input/input";
 import iconClose from "../../assets/close-icon.svg";
 import Button from "../button/button";
+import { toastify } from "@/lib/Toast";
+import { getItemStorage, setItemStorage } from "../../utils/localStorage";
 
 export default function Modal({
   click,
@@ -12,8 +14,69 @@ export default function Modal({
   click: boolean;
   setClick: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  // const handleSubmit = () => {};
-  // const [click, setClick] = useState(true);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  });
+
+  // const loadUser = async () => {
+  //   const { data } = await api.get(`/user/${id}`, {
+  //     headers: {
+  //       authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   setForm({
+  //     name: data[0].user_name,
+  //     email: data[0].email,
+  //     password: data[0].password,
+  //
+  //   });
+  // };
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    // await api.put(
+    //   `/user/toEdit/${id}`,
+    //   {
+    //     ...form,
+    //   },
+    //   {
+    //     headers: {
+    //       authorization: `Bearer ${token}`,
+    //     },
+    //   }
+    // );
+
+    //Apenas para testes:
+    // setItemStorage("nome", form.name);
+    // setItemStorage("email", form.email);
+    // setItemStorage("password", form.password);
+    // setItemStorage("passwordConfirm", form.passwordConfirm);
+    // console.log(getItemStorage("nome"));
+    // console.log(getItemStorage("email"));
+    // console.log(getItemStorage("password"));
+    // console.log(getItemStorage("passwordConfirm"));
+
+    if (!form.email.includes("@") || !form.email.includes(".com")) {
+      return toastify.error("O e-mail informado é inválido.");
+    }
+
+    if (form.password.length < 5) {
+      return toastify.error("A senha deve ter no mínimo 5 dígitos.");
+    }
+    if (form.password !== form.passwordConfirm) {
+      return toastify.error("As senhas não coincidem");
+    }
+  };
+
+  const handleChange = (event: any) => {
+    const value = event.target.value;
+    setForm({ ...form, [event.target.id]: value });
+  };
 
   return (
     <>
@@ -34,13 +97,18 @@ export default function Modal({
             </div>
 
             <div>
-              <form className="space-y-6 flex flex-col justify-evenly  h-[500px]">
+              <form
+                className="space-y-6 flex flex-col justify-evenly  h-[500px]"
+                onSubmit={handleSubmit}
+              >
                 <Input
-                  id="nome"
-                  name="nome"
+                  id="name"
+                  name="name"
                   type="text"
-                  autoComplete="nome"
+                  autoComplete="name"
                   label="Nome"
+                  value={form.name}
+                  onChange={(event) => handleChange(event)}
                 />
                 <Input
                   id="email"
@@ -48,6 +116,8 @@ export default function Modal({
                   type="text"
                   autoComplete="email"
                   label="E-mail"
+                  value={form.email}
+                  onChange={(event) => handleChange(event)}
                 />
                 <Input
                   id="password"
@@ -55,6 +125,8 @@ export default function Modal({
                   type="password"
                   autoComplete="password"
                   label="Senha"
+                  value={form.password}
+                  onChange={(event) => handleChange(event)}
                 />
                 <Input
                   id="passwordConfirm"
@@ -62,6 +134,8 @@ export default function Modal({
                   type="password"
                   autoComplete="passwordConfirm"
                   label="Confirmar senha"
+                  value={form.passwordConfirm}
+                  onChange={(event) => handleChange(event)}
                 />
 
                 <div>
